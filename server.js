@@ -36,6 +36,8 @@ app.post('/rss', async (req, res) => {
         
    try{
        let feed = await parser.parseURL(req.body.url);
+   }catch(e){
+    console.log(e);
    }
 
     if(feed){
