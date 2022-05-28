@@ -18,10 +18,6 @@ let parser = new Parser({
         "Host": "jusparanode.sitebeta.com.br:3005", // building host header
         "Cache-Control": "no-cache",
         },
-        
-        agentOptions: { 
-            secureProtocol: 'SSLv3_method',
-        },
       });
 
 // App
