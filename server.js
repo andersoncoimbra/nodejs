@@ -10,7 +10,17 @@ let Parser = require('rss-parser');
 let parser = new Parser({
         headers: {
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Encoding":" gzip, deflate",
+        "Accept-Language": "pt-Br,en;q=0.5",
         "User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0.1",
+        "Connection": "Keep-Alive",
+        "Pragma": "no-cache",
+        "Host": "jusparanode.sitebeta.com.br:3005", // building host header
+        "Cache-Control": "no-cache",
+        },
+        
+        agentOptions: { 
+            secureProtocol: 'SSLv3_method',
         },
       });
 
