@@ -8,7 +8,10 @@ const HOST = '0.0.0.0';
 
 let Parser = require('rss-parser');
 let parser = new Parser({
-        headers: {'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Mobile Safari/537.36 Edg/101.0.1210.39:'},
+        headers: {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0.1",
+        },
       });
 
 // App
@@ -18,25 +21,25 @@ app.use(require('body-parser').urlencoded({ extended: false }));
 app.post('/rss', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   console.log('Recebendo requisição', req.body);
-  let feed = null;
-  try {
-    feed = await parser.parseURL(req.body.url);
-    
-  }
-  catch (e) {
-    console.log('Erro ao ler feed', e);
-  }  
+
+    let feed = await parser.parseURL(req.body.url);
+    res.send(feed);
+
+    if(feed){
+        res.send(feed);
+    }else{
+        res.sendStatus(404);
+    }
+  
+  
   req.body; // { url: 'https://www.tse.jus.br/rss' }
-  if(feed){
-    res.json(feed);
-  }else{
-    res.sendStatus(404);
-  }
+
 });
 
+
 app.get('/', (req, res) => {
-  res.send("GET Request Called")
-})
+    res.send('status: ' + res.statusCode); // status: 200
+});
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
