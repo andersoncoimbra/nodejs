@@ -32,10 +32,10 @@ app.post('/rss', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   console.log('Recebendo requisição', req.body);
 
-      fedd = null;
+    let  fedd = [];
         
    try{
-       let feed = await parser.parseURL(req.body.url);
+        feed = await parser.parseURL(req.body.url);
    }catch(e){
     console.log(e);
    }
